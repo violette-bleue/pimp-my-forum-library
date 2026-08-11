@@ -1,0 +1,35 @@
+<!-- groupcp_pending_info --><table class="table1 table-resp" cellspacing="1">
+    <thead>
+    <tr>
+        <th class="name">{L_USERNAME}</th>
+        <th class="pm">{L_PM}</th>
+        <th class="posts">{L_POSTS}</th>
+        <th class="website">{L_FROM}</th>
+        <th class="website">{L_EMAIL}</th>
+        <th class="website">{L_WEBSITE}</th>
+        <th>{L_SELECT}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="row3">
+        <td colspan="8">{L_PENDING_MEMBERS}</td>
+    </tr>
+    <!-- BEGIN pending_members_row -->
+    <tr class="{pending_members_row.ROW_CLASS} selected">
+        <td data-th="{L_USERNAME}&nbsp;:&nbsp;"><a class="resp_fff" href="{pending_members_row.U_VIEWPROFILE}">{pending_members_row.USERNAME}</a></td>
+        <td data-th="{L_PM}&nbsp;:&nbsp;">{pending_members_row.PM_IMG}</td>
+        <td data-th="{L_POSTS}&nbsp;:&nbsp;">{pending_members_row.POSTS}</td>
+        <td data-th="{L_FROM}&nbsp;:&nbsp;">{pending_members_row.FROM}</td>
+        <td data-th="{L_EMAIL}&nbsp;:&nbsp;">{pending_members_row.EMAIL_IMG}</td>
+        <td data-th="{L_WEBSITE}&nbsp;:&nbsp;">{pending_members_row.WWW_IMG}</td>
+        <td data-th="{L_SELECT}&nbsp;:&nbsp;" class="posts"><input type="checkbox" name="pending_members[]" onchange="$(this).closest('tr').toggleClass('selected');" value="{pending_members_row.USER_ID}" checked="checked" /></td>
+    </tr>
+    <!-- END pending_members_row -->
+    </tbody>
+</table>
+
+<fieldset class="form-buttons">
+    <input class="btn btn-default btn-green" type="submit" name="approve" value="{L_APPROVE_SELECTED}" />
+    <input class="btn btn-default btn-red" type="submit" name="deny" value="{L_DENY_SELECTED}" />
+</fieldset>
+<br/>

@@ -1,0 +1,28 @@
+<h1 class="pmf-page-title">{TITLE_ACTIVITY_FEED}</h1>
+<!-- BEGIN no_activity -->
+<div class="pmf-panel"><p class="pmf-panel__body">{no_activity.INFO}</p></div>
+<!-- END no_activity -->
+<!-- BEGIN has_activity -->
+<div class="pmf-activity-feed" data-pmf-slot="activity-feed">
+	<!-- BEGIN activity_date_group -->
+	<div class="pmf-activity-feed__group">
+		<div class="pmf-activity-feed__group-header">
+			<h2 class="pmf-activity-feed__group-title">{has_activity.activity_date_group.FORMATTED_DATE}</h2>
+		</div>
+		<ol class="pmf-activity-feed__list">
+			<!-- BEGIN activity_feed_item -->
+			<li class="pmf-activity-feed__item pmf-activity-feed__item--{has_activity.activity_date_group.activity_feed_item.TYPE} {has_activity.activity_date_group.activity_feed_item.EXTRA_CLASS}"
+				style="--pmf-activity-image: url({has_activity.activity_date_group.activity_feed_item.U_AVATAR});">
+				<time class="pmf-activity-feed__time" datetime="{has_activity.activity_date_group.activity_feed_item.DATETIME}" title="{has_activity.activity_date_group.activity_feed_item.DATETIME}">
+					{has_activity.activity_date_group.activity_feed_item.TIME_FORMATTED}
+				</time>
+				<div class="pmf-activity-feed__text pmf-fa-raw">{has_activity.activity_date_group.activity_feed_item.ACTIVITY}</div>
+			</li>
+			<!-- END activity_feed_item -->
+		</ol>
+	</div>
+	<!-- END activity_date_group -->
+</div>
+<div class="pmf-activity-feed__end"><span>{has_activity.L_ACTIVITY_END}</span></div>
+{JS_COLLAPSE}
+<!-- END has_activity -->

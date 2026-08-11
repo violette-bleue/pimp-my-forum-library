@@ -1,0 +1,107 @@
+<!-- BEGIN topics_list_box -->
+<!-- BEGIN row -->
+<!-- BEGIN header_table -->
+	<!-- BEGIN multi_selection -->
+	<script type="text/javascript">
+	function check_uncheck_main_{topics_list_box.row.header_table.BOX_ID}()
+	{
+		var all_checked = true;
+		for (i = 0; (i < document.{topics_list_box.FORMNAME}.elements.length) && all_checked; i++)
+		{
+			if (document.{topics_list_box.FORMNAME}.elements[i].name == '{topics_list_box.FIELDNAME}[]{topics_list_box.row.header_table.BOX_ID}')
+			{
+				all_checked = document.{topics_list_box.FORMNAME}.elements[i].checked;
+			}
+		}
+		document.{topics_list_box.FORMNAME}.all_mark_{topics_list_box.row.header_table.BOX_ID}.checked = all_checked;
+	}
+	function check_uncheck_all_{topics_list_box.row.header_table.BOX_ID}()
+	{
+		for (i = 0; i < document.{topics_list_box.FORMNAME}.length; i++)
+		{
+			if (document.{topics_list_box.FORMNAME}.elements[i].name == '{topics_list_box.FIELDNAME}[]{topics_list_box.row.header_table.BOX_ID}')
+			{
+				document.{topics_list_box.FORMNAME}.elements[i].checked = document.{topics_list_box.FORMNAME}.all_mark_{topics_list_box.row.header_table.BOX_ID}.checked;
+			}
+		}
+	}
+	</script>
+	<!-- END multi_selection -->
+
+	<div class="pmf-category pmf-category--announcement">
+		<div class="pmf-category__header">
+			<!-- BEGIN multi_selection -->
+			<input onclick="check_uncheck_all_{topics_list_box.row.header_table.BOX_ID}();" type="checkbox" name="all_mark_{topics_list_box.row.header_table.BOX_ID}" value="0" />
+			<!-- END multi_selection -->
+			<div class="pmf-category__title">{topics_list_box.row.L_TITLE}</div>
+			<div class="pmf-category__col-posts"><i icon-mask="messages" data-tooltip="{topics_list_box.row.L_REPLIES}"></i></div>
+			<div class="pmf-category__col-views"><i icon-mask="eye" data-tooltip="{topics_list_box.row.L_VIEWS}"></i></div>
+			<div class="pmf-category__col-lastpost"><i icon-mask="clock" data-tooltip="{topics_list_box.row.L_LASTPOST}"></i></div>
+		</div>
+		<ul class="pmf-category__list">
+<!-- END header_table -->
+
+<!-- BEGIN header_row -->
+		<strong>{topics_list_box.row.L_TITLE}</strong>
+<!-- END header_row -->
+
+<!-- BEGIN topic -->
+
+	<!-- BEGIN table_sticky -->
+		</ul>
+	</div>
+	<div class="pmf-category">
+		<div class="pmf-category__header">
+			<!-- BEGIN multi_selection -->
+			<input onclick="check_uncheck_all_{topics_list_box.row.header_table.BOX_ID}();" type="checkbox" name="all_mark_{topics_list_box.row.header_table.BOX_ID}" value="0" />
+			<!-- END multi_selection -->
+			<div class="pmf-category__title">{topics_list_box.row.topic.table_sticky.L_TITLE}</div>
+			<div class="pmf-category__col-posts"><i icon-mask="messages" data-tooltip="{topics_list_box.row.topic.table_sticky.L_REPLIES}"></i></div>
+			<div class="pmf-category__col-views"><i icon-mask="eye" data-tooltip="{topics_list_box.row.topic.table_sticky.L_VIEWS}"></i></div>
+			<div class="pmf-category__col-lastpost"><i icon-mask="clock" data-tooltip="{topics_list_box.row.topic.table_sticky.L_LASTPOST}"></i></div>
+		</div>
+		<ul class="pmf-category__list">
+	<!-- END table_sticky -->
+
+		<li class="pmf-topic-row {topics_list_box.row.ROW_ALT_CLASS}"<!-- BEGIN line_sticky --> data-pmf-sticky-separator="1"<!-- END line_sticky -->>
+			<div class="pmf-topic-row__icon" style="background-image:url('{topics_list_box.row.TOPIC_FOLDER_IMG}');" title="{topics_list_box.row.L_TOPIC_FOLDER_ALT}" {topics_list_box.row.ICON}>
+				<!-- BEGIN single_selection -->
+				<input type="radio" name="{topics_list_box.FIELDNAME}" value="{topics_list_box.row.FID}" {topics_list_box.row.L_SELECT} />
+				<!-- END single_selection -->
+			</div>
+			<div class="pmf-topic-row__main">
+				<div class="pmf-topic-row__title-line">
+					{topics_list_box.row.NEWEST_POST_IMG}
+					{topics_list_box.row.PARTICIPATE_POST_IMG}
+					{topics_list_box.row.TOPIC_TYPE}
+					<h2 class="pmf-topic-row__title"><a href="{topics_list_box.row.U_VIEW_TOPIC}">{topics_list_box.row.TOPIC_TITLE}</a></h2>
+				</div>
+				<!-- BEGIN switch_description -->
+				<span class="pmf-topic-row__desc">{topics_list_box.row.topic.switch_description.TOPIC_DESCRIPTION}</span>
+				<!-- END switch_description -->
+				<span class="pmf-topic-row__author">{topics_list_box.row.L_BY} {topics_list_box.row.TOPIC_AUTHOR}</span>
+				{topics_list_box.row.GOTO_PAGE_NEW}
+				<!-- BEGIN nav_tree -->{topics_list_box.row.TOPIC_NAV_TREE_NEW}<!-- END nav_tree -->
+			</div>
+			<div class="pmf-topic-row__posts">{topics_list_box.row.REPLIES} <span class="pmf-topic-row__col-label">{L_REPLIES}</span></div>
+			<div class="pmf-topic-row__views">{topics_list_box.row.VIEWS} <span class="pmf-topic-row__col-label">{L_VIEWS}</span></div>
+			<div class="pmf-topic-row__lastpost">
+				<!-- BEGIN avatar --><span class="pmf-topic-row__lastpost-avatar">{topics_list_box.row.topic.avatar.LAST_POST_AVATAR}</span><!-- END avatar -->
+				<span class="pmf-topic-row__lastpost-info">{topics_list_box.row.LAST_POST_AUTHOR} <span class="pmf-topic-row__col-label">{L_LASTPOST}</span> {topics_list_box.row.LAST_POST_IMG}<br />{topics_list_box.row.LAST_POST_TIME}</span>
+			</div>
+			<!-- BEGIN multi_selection -->
+			<input onclick="javascript:check_uncheck_main_{topics_list_box.row.BOX_ID}();" type="checkbox" name="{topics_list_box.FIELDNAME}[]{topics_list_box.row.BOX_ID}" value="{topics_list_box.row.FID}" {topics_list_box.row.L_SELECT} />
+			<!-- END multi_selection -->
+		</li>
+<!-- END topic -->
+<!-- BEGIN no_topics -->
+<li class="pmf-topic-row pmf-topic-row--empty"><strong>{topics_list_box.row.L_NO_TOPICS}</strong></li>
+<!-- END no_topics -->
+
+<!-- BEGIN bottom -->
+		</ul>
+	</div>
+<!-- END bottom -->
+<!-- BEGIN spacer --><div class="pmf-category-spacer"></div><!-- END spacer -->
+<!-- END row -->
+<!-- END topics_list_box -->

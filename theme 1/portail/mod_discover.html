@@ -1,0 +1,36 @@
+<!-- mod_discover --><div class="box mod_discover">
+	<div class="box-head">
+		<i class="material-symbols-outlined">history</i>
+		<span>{L_ACTIVITY}</span>
+	</div>
+	<div class="box-body inner_module">
+		<!-- BEGIN has_activity -->
+		<div>
+			<!-- BEGIN activity_date_group -->
+			<div class="activity-date-group">
+				<div class="header">
+					<b>{has_activity.activity_date_group.FORMATTED_DATE}</b>
+				</div>
+				<ol class="activity-feed">
+					<!-- BEGIN activity_feed_item -->
+					<li class="feed-item activity-type-{has_activity.activity_date_group.activity_feed_item.TYPE} {has_activity.activity_date_group.activity_feed_item.EXTRA_CLASS}"
+						style="--activity-image: url({has_activity.activity_date_group.activity_feed_item.U_AVATAR});">
+						<time class="time" datetime="{has_activity.activity_date_group.activity_feed_item.DATETIME}" title="{has_activity.activity_date_group.activity_feed_item.DATETIME}">
+                            {has_activity.activity_date_group.activity_feed_item.TIME_FORMATTED}
+						</time>
+						<div class="text">
+                            {has_activity.activity_date_group.activity_feed_item.ACTIVITY}
+						</div>
+					</li>
+					<!-- END activity_feed_item -->
+				</ol>
+			</div>
+			<!-- END activity_date_group -->
+		</div>
+		<a class="button" target="_blank" href="/discover">{L_ACTIVITY_FEED}</a>
+		<!-- END has_activity -->
+		<!-- BEGIN no_activity -->
+		<p>{no_activity.INFO}</p>
+		<!-- END no_activity -->
+	</div>
+</div>

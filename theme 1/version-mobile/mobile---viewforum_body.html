@@ -1,0 +1,55 @@
+<!-- viewforum_body --><!-- BEGIN switch_forum_desc -->
+<div id="page-desc" class="box-subtle">
+    <div class="page-desc-content">
+        <div>{SINGLE_FORUM_DESC}</div>
+    </div>
+    <div class="page-desc-btn">
+        <i class="material-symbols-outlined">keyboard_arrow_down</i>
+        <i class="material-symbols-outlined">keyboard_arrow_up</i>
+    </div>
+</div>
+<!-- END switch_forum_desc -->
+
+<!-- BEGIN switch_user_authpost -->
+<a href="{U_POST_NEW_TOPIC}" rel="nofollow" class="btn btn-rep-topic" {S_POST_NEW_TOPIC} title="{T_POST_NEW_TOPIC}">
+    <i class="material-symbols-outlined">{I_POST_NEW_TOPIC}</i>&nbsp;{L_POST_NEW_TOPIC}
+</a>
+<!-- END switch_user_authpost -->
+{BOARD_INDEX}
+
+{PAGINATION}
+
+{TOPICS_LIST_BOX}
+
+{PAGINATION}
+<div class="btn btn-rep-topic">
+    {S_WATCH_FORUM}
+</div>
+<!-- BEGIN switch_user_authpost -->
+<a href="{U_POST_NEW_TOPIC}" rel="nofollow" title="{T_POST_NEW_TOPIC}" {S_POST_NEW_TOPIC} class="btn-floating">
+    <i class="material-symbols-outlined">{I_POST_NEW_TOPIC}</i>
+    <span class="btn-floating-txt">{L_POST_NEW_TOPIC}</span>
+</a>
+<!-- END switch_user_authpost -->
+
+<script type="text/javascript">
+    //<![CDATA[
+    $(document).ready(function() {
+        var desc = $('#page-desc'),
+            desc_content = desc.children('.page-desc-content'),
+            desc_btn = desc.children('.page-desc-btn');
+
+        if (!desc_content.children('div').is(':empty')) {
+            desc.addClass('visible');
+
+            if(desc_content.find('div')[0].scrollHeight > 64) {
+                desc_btn.addClass('visible');
+            }
+        }
+
+        desc_btn.on('click', function() {
+            desc.toggleClass('expanded');
+        });
+    });
+    //]]>
+</script>

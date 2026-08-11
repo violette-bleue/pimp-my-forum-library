@@ -1,0 +1,49 @@
+<!-- mod_news --><!-- BEGIN post_row -->
+<a name="news_{post_row.ID}"></a>
+
+<div class="mod-news">
+    <div class="mod-news-header">
+        <div class="h3">{post_row.TITLE}</div>
+        <div class="mod-news-info"><span class="mod-news-time">{post_row.TIME}</span><span class="mod-news-author">{post_row.POSTER}</span></div>
+    </div>
+    <div class="content">{post_row.TEXT}
+        <!-- BEGIN switch_attachments -->
+        <dl class="attachbox">
+            <dt><b>{post_row.switch_attachments.L_ATTACHMENTS}</b></dt>
+            <dd class="attachments">
+                <!-- BEGIN switch_post_attachments -->
+                <dl class="file clearfix">
+                    <dt>
+                        <!-- BEGIN switch_dl_att -->
+                        <span><a class="postlink btn btn-flat" href="{post_row.switch_attachments.switch_post_attachments.switch_dl_att.U_ATTACHMENT}"><i class="material-symbols-outlined">attach_file</i>{post_row.switch_attachments.switch_post_attachments.switch_dl_att.ATTACHMENT}</a></span> {post_row.switch_attachments.switch_post_attachments.switch_dl_att.ATTACHMENT_DEL}
+                        <!-- END switch_dl_att -->
+
+                        <!-- BEGIN switch_no_dl_att -->
+                        <span class="postlink btn btn-flat" style="cursor: not-allowed"><i class="material-symbols-outlined">attach_file</i>{post_row.switch_attachments.switch_post_attachments.switch_no_dl_att.ATTACHMENT}</span> {post_row.switch_attachments.switch_post_attachments.switch_no_dl_att.ATTACHMENT_DEL}
+                        <!-- END switch_no_dl_att -->
+                    </dt>
+                    <dd>
+                        <!-- BEGIN switch_no_comment -->
+                        <span>{post_row.switch_attachments.switch_post_attachments.switch_no_comment.ATTACHMENT_COMMENT}</span>
+                        <!-- END switch_no_comment -->
+
+                        <!-- BEGIN switch_no_dl_att -->
+                        <p><strong>{post_row.switch_attachments.switch_post_attachments.switch_no_dl_att.TEXT_NO_DL}</strong></p>
+                        <!-- END switch_no_dl_att -->
+
+                        <p>(<span class="ltr">{post_row.switch_attachments.switch_post_attachments.FILE_SIZE}</span>) {post_row.switch_attachments.switch_post_attachments.NB_DL}</p>
+                    </dd>
+                </dl>
+                <!-- END switch_post_attachments -->
+            </dd>
+        </dl>
+        <!-- END switch_attachments -->
+    </div>
+    <div class="mod-news-footer">
+        <a href="{post_row.U_VIEW_COMMENTS}" class="comments-num">{L_COMMENTS}: {post_row.REPLIES}</a>
+        <!-- BEGIN switch_link_readmore -->
+        <a href="{post_row.switch_link_readmore.U_READ_FULL}" rel="nofollow" class="rightside read-more"><span>{post_row.switch_link_readmore.L_READ_FULL}</span></a>
+        <!-- END switch_link_readmore -->
+    </div>
+</div>
+<!-- END post_row -->

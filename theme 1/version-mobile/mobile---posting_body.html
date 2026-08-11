@@ -1,0 +1,243 @@
+<!-- posting_body -->{INLINE_MESSAGE}
+{ERROR_BOX}
+<form action="{S_POST_ACTION}" method="post" name="post" enctype="multipart/form-data">
+{POST_PREVIEW_BOX}
+    <!-- BEGIN switch_preview_box -->
+    <fieldset class="submit-buttons">
+        <button class="btn btn-default" type="submit" name="post" value="{L_SUBMIT}" title="{L_SUBMIT}" tabindex="3" accesskey="s">
+            <!-- BEGIN switch_send -->
+            <i class="material-symbols-outlined">send</i>
+            <!-- END switch_send -->
+            <!-- BEGIN switch_publish -->
+            <i class="material-symbols-outlined">save</i>
+            <!-- END switch_publish -->
+            <span>{L_SUBMIT}</span>
+        </button>
+    </fieldset>
+    <!-- END switch_preview_box -->
+    <div class="box">
+        <a class="btn btn-black btn-mini right" onclick="{A_UPLOAD_FUNCTION}">{L_UPLOAD}</a>
+        <div class="clear"></div>
+
+            <!-- BEGIN switch_username_select -->
+            <input type="text" name="username" placeholder="{L_USERNAME}" value="{USERNAME}" maxlength="25" tabindex="1" onkeypress="if(event.keyCode==13) { return false; }" class="input-subtle" />
+            <!-- END switch_username_select -->
+            <!-- BEGIN switch_privmsg -->
+            <!-- BEGIN switch_username -->
+            <input class="input-subtle input-username" type="text" name="username[]" value="{switch_privmsg.switch_username.USERNAME}" placeholder="{L_USERNAME}" />
+            <!-- END switch_username -->
+            <div id="add_username" class="btn right">
+                <i class="material-symbols-outlined">person_add</i>
+            </div>
+            <input class="input-subtle input-username" type="text" id="username" name="username[]" value="{USERNAME}" tabindex="1" placeholder="{L_USERNAME}" />
+            <!-- BEGIN switch_privmsg_friend -->
+            <label style="margin-top: 16px;">
+                {switch_privmsg.switch_privmsg_friend.L_OR_FRIEND}
+                <div class="select-subtle">
+                    {switch_privmsg.switch_privmsg_friend.FRIEND_PM}
+                </div>
+            </label>
+            <!-- END switch_privmsg_friend -->
+            <!-- BEGIN switch_privmsg_group -->
+            <label>
+                {switch_privmsg.switch_privmsg_group.L_OR_GROUP}
+                <div class="select-subtle">
+                    {switch_privmsg.switch_privmsg_group.MASS_PM}
+                </div>
+                <span>{switch_privmsg.switch_privmsg_group.MASS_PM_EXPLAIN}</span>
+            </label>
+            <!-- END switch_privmsg_group -->
+            <!-- END switch_privmsg -->
+            <input type="text" name="subject" placeholder="{L_SUBJECT}" value="{SUBJECT}" maxlength="{TOPIC_TITLE_MAXLENGTH}" tabindex="1" title="{TOPIC_TITLE_LENGTH_EXPLAIN}" onkeypress="if(event.keyCode==13) { return false; }" class="input-subtle" />
+            <!-- BEGIN switch_section -->
+            <label>
+                <div class="select-subtle">
+                    {switch_section.S_FORUM_SELECT}
+                </div>
+            </label>
+            <!-- END switch_section -->
+            <textarea class="input-subtle" name="message" placeholder="{L_MESSAGE_BODY}" id="text_editor_textarea" tabindex="2" rows="10">{MESSAGE}</textarea>
+            <button class="btn" type="submit" name="post" value="{L_SUBMIT}" title="{L_SUBMIT_TITLE}" tabindex="3" accesskey="s" {DISABLED_SUBMIT}>
+                <!-- BEGIN switch_send -->
+                <i class="material-symbols-outlined">send</i>
+                <!-- END switch_send -->
+                <!-- BEGIN switch_publish -->
+                <i class="material-symbols-outlined">save</i>
+                <!-- END switch_publish -->
+                <span>{L_SUBMIT}</span>
+            </button>
+            <!-- BEGIN switch_draft -->
+            <button class="btn btn-soft {BTN_DRAFT_CLASS}" type="submit" name="draft" title="{L_DRAFT}" title="{L_DRAFT_TITLE}" tabindex="7" accesskey="d" {switch_draft.DISABLED_DRAFT} >
+                <i class="material-symbols-outlined">save</i><span>{L_DRAFT}</span>
+            </button>
+            <!-- END switch_draft -->
+            <!-- BEGIN switch_preview -->
+            <input type="submit" name="preview" class="btn btn-soft"  value="{L_PREVIEW}" tabindex="5" />
+            <!-- END switch_preview -->
+            <!-- BEGIN switch_publish -->
+            <input type="submit" name="publish" class="btn btn-soft"  value="{L_PUBLISH}" tabindex="8" accesskey="p" />
+            <!-- END switch_publish -->
+            <input type="hidden" name="lt" value="{LAST_TOPIC_ID}" />
+            <input type="hidden" name="notify" value="{NOTIFY}" />
+            {S_HIDDEN_FORM_FIELDS}
+
+        <!-- {CODE_CONFIRM} -->
+        <!-- BEGIN switch_warning_msg -->
+        <br/><br/><br/>
+        <span class="info">{switch_warning_msg.WARNING_CONTENT}</span>
+        <!-- END switch_warning_msg -->
+    </div>
+</form>
+
+<!-- BEGIN switch_privmsg -->
+<script type="text/javascript">
+    var input_username_tpl;
+
+    $('#add_username').on('click', function() {
+        if (!$('.input-username').last().attr('disabled')) {
+            input_username_tpl = $('#username').clone().removeAttr('tabindex').removeAttr('data-id').val('');
+
+            $('.input-username').last().after(input_username_tpl);
+
+            updateRecipientFields(2, $('.input-username'));
+        }
+    });
+
+    var recipient_fields = [
+            $('select[name=userfriend]'),
+            $('select[name=usergroup]'),
+            $('.input-username')
+        ],
+        recipient_fields_other = [],
+        recipient_field_empty;
+
+    $.each(recipient_fields, function(i) {
+        updateRecipientFields(i, $(this));
+    });
+
+    function updateRecipientFields(i, recipient_field) {
+        recipient_fields = [
+            $('select[name=userfriend]'),
+            $('select[name=usergroup]'),
+            $('.input-username')
+        ];
+
+        checkRecipientFields(i, recipient_field);
+
+        recipient_field.on('input', function() {
+            checkRecipientFields(i, recipient_field);
+        });
+    };
+
+    function checkRecipientFields(i, recipient_field) {
+        recipient_fields_other = recipient_fields.slice();
+        recipient_fields_other.splice(i, 1);
+        recipient_field_empty = true;
+
+        recipient_field.each(function() {
+            if ($(this).val()) {
+                recipient_field_empty = false;
+            }
+        });
+
+        if (recipient_field_empty) {
+            $.each(recipient_fields, function() {
+                $(this).each(function() {
+                    $(this).removeAttr('disabled');
+                });
+            });
+        } else {
+            $.each(recipient_fields_other, function() {
+                $(this).attr('disabled', 'disabled');
+            });
+        }
+    }
+
+    var dropdown_body = $('<ul>', {
+            class: 'dropdown dropdown-usernames',
+        }),
+        dropdown_item,
+        dropdown_pos_left,
+        dropdown_pos_top,
+        input_username_id = 0;
+
+    $('.box form').on('input click', '.input-username', function() {
+        if (!$(this).attr('data-id')) {
+            $(this).attr('data-id', ++input_username_id);
+        };
+
+        if ($(this).val().length > 1) {
+            search_query = $(this).val();
+
+            dropdown_pos_top = $(this).offset().top + $(this).outerHeight();
+
+            if ($('html').attr('dir') == 'rtl') {
+                dropdown_pos_left = $(this).offset().left + $(this).width();
+                dropdown_body.css({
+                    left: dropdown_pos_left,
+                    top: dropdown_pos_top,
+                    transform: 'translateX(-100%)'
+                })
+            } else {
+                dropdown_pos_left = $(this).offset().left;
+                dropdown_body.css({
+                    left: dropdown_pos_left,
+                    top: dropdown_pos_top
+                })
+            }
+
+            dropdown_body.attr('data-id', $(this).attr('data-id'));
+
+            getUsers(search_query);
+        } else {
+            dropdown_body.detach();
+        }
+    });
+
+    $(dropdown_body).on('click', 'li', function() {
+        $('.input-username[data-id=' + $(this).parent().attr('data-id') + ']').val($(this).text());
+        dropdown_body.detach();
+    });
+
+    function getUsers(search_query) {
+        $.ajax({
+            url: '/search?mode=searchuser&search_username=' + search_query + '*', success: function (data) {
+                var options = $(data).find('select[name="username_list"] option'),
+                    usernames = [];
+
+                options.each(function () {
+                    usernames.push($(this).attr('value'));
+                });
+
+                if (usernames.length == 1 && usernames[0] == $('.input-username[data-id=' + dropdown_body.attr('data-id') + ']').val()) {
+                    dropdown_body.detach();
+                } else {
+                    buildUsersDropdown(usernames);
+                }
+            }
+        });
+    }
+
+    function buildUsersDropdown(usernames) {
+        dropdown_body.html('');
+
+        $.each(usernames, function(i, v) {
+            dropdown_item = $('<li>', {
+                text: v,
+            }).appendTo(dropdown_body);
+        });
+
+        $('body').append(dropdown_body);
+    }
+</script>
+<!-- END switch_privmsg -->
+
+<script type="text/javascript">
+    if (!$('.btn.btn-black.btn-mini.right').text().length) {
+        $('.btn.btn-black.btn-mini.right').remove();
+    }
+</script>
+
+<!-- BEGIN switch_mobi_editor -->
+{SCEDITOR}
+<!-- END switch_mobi_editor -->

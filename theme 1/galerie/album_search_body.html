@@ -1,0 +1,39 @@
+<!-- album_search_body -->{JS_MENU}
+
+<!-- BEGIN switch_search_results -->
+<div class="page-header">
+    <h1>{L_SEARCH_MATCHES}&nbsp;{L_NRESULTS}/{L_TRESULTS}</h1>
+
+    <div id="breadcrumbs">
+        <a href="{U_FORUM_INDEX}"><i class="material-symbols-outlined">home</i> <span>{L_INDEX}</span></a>
+        <a href="{U_ALBUM}"><span>{L_ALBUM}</span></a>
+    </div>
+</div>
+
+<table class="table1 table-resp">
+    <thead>
+    <tr>
+        <th>&nbsp;</th>
+        <th class="name">{L_TTITLE}</th>
+        <th class="name">{L_TCATEGORY}</th>
+        <th class="name">{L_TDESC}</th>
+        <th>{L_TSUBMITER}</th>
+        <th class="name">{L_TSUBMITED}</th>
+    </tr>
+    </thead>
+    <!-- BEGIN search_results -->
+    <tbody>
+    <tr class="{switch_search_results.search_results.ROW_CLASS}">
+        <td class="posts"><a href="{switch_search_results.search_results.U_PIC}"><img src="{switch_search_results.search_results.THUMBNAIL}" {THUMB_SIZE} alt="{switch_search_results.search_results.DESC}" loading="lazy" /></a></td>
+        <td><a href="{switch_search_results.search_results.U_PIC}">{switch_search_results.search_results.L_PIC}</a></td>
+        <td><a href="{switch_search_results.search_results.U_CAT}"><strong>{switch_search_results.search_results.L_CAT}</strong></a></td>
+        <td>{switch_search_results.search_results.L_PIC_DESC}</td>
+        <td class="stats">{switch_search_results.search_results.L_USERNAME}</td>
+        <td>{switch_search_results.search_results.L_TIME}</td>
+    </tr>
+    </tbody>
+    <!-- END search_results -->
+</table>
+
+<div class="pagination">{PAGINATION}</div>
+<!-- END switch_search_results -->

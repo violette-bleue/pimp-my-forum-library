@@ -1,0 +1,90 @@
+<!-- topics_grid_box --><!-- BEGIN topics_grid_box -->
+<!-- BEGIN row -->
+<!-- BEGIN header_table -->
+<div class="posts forum-grid">
+	<div class="posts-header">
+		<h2 class="posts-title">
+			<i class="material-symbols-outlined">{topics_grid_box.row.ICON}</i>
+			<span>{topics_grid_box.row.L_TITLE}</span>
+		</h2>
+	</div>
+	<div class="grid-section">
+		<!-- END header_table -->
+		<!-- BEGIN header_row -->
+		<strong>{topics_grid_box.row.L_TITLE}</strong>
+		<!-- END header_row -->
+		<!-- BEGIN topic -->
+		<!-- BEGIN table_sticky -->
+	</div>
+</div>
+<div class="posts forum-grid">
+	<div class="posts-header">
+		<h2 class="posts-title">
+			<i class="material-symbols-outlined">description</i>
+			<span>{topics_grid_box.row.topic.table_sticky.L_TITLE}</span>
+		</h2>
+	</div>
+	<div class="grid-section">
+		<!-- END table_sticky -->
+
+		<div class="topic-card">
+			<a href="{topics_grid_box.row.U_VIEW_TOPIC}">
+				<div class="cover-image" style="--cover-image: url('{topics_grid_box.row.U_FB_IMAGE}');">
+					<div class="posts-icon {topics_grid_box.row.FOLDER_CLASSNAME} {topics_grid_box.row.TOPIC_READ_STATUS}" title="{topics_grid_box.row.L_TOPIC_FOLDER_ALT}">
+						<i class="material-symbols-outlined">chat_bubble</i>
+					</div>
+					<div class="stats">
+						<span data-tooltip="{L_VIEWS}"><i class="material-symbols-outlined">visibility</i> {topics_grid_box.row.VIEWS}</span>
+						<span data-tooltip="{L_REPLIES}"><i class="material-symbols-outlined">forum</i> {topics_grid_box.row.REPLIES}</span>
+					</div>
+					<div class="topic-type {topics_grid_box.row.FOLDER_CLASSNAME}">
+                        {topics_grid_box.row.TOPIC_TYPE}
+					</div>
+					<div class="forum-avatar author-avatar" title="{topics_grid_box.row.L_CREATED_ON_BY}">
+                        {topics_grid_box.row.TOPIC_AUTHOR_AVATAR}
+					</div>
+				</div>
+			</a>
+			<div class="content">
+				<div>
+					<!-- BEGIN single_selection -->
+					<span class="radio">
+               <input type="radio" name="{topics_grid_box.FIELDNAME}" value="{topics_grid_box.row.FID}" {topics_grid_box.row.L_SELECT} />
+               <span class="radio-check"></span>
+               </span>
+					<!-- END single_selection -->
+					<span class="participate-check">{topics_grid_box.row.PARTICIPATE_POST_IMG}</span>
+					<a href="{topics_grid_box.row.U_VIEW_TOPIC}">
+						<h3>{topics_grid_box.row.TOPIC_TITLE}</h3>
+					</a>
+				</div>
+				<div class="description">
+                    {topics_grid_box.row.FIRST_POST_TEXT_110}
+				</div>
+				<div class="card-footer">
+					<div class="forum-avatar-footer">
+						<!-- BEGIN avatar -->
+                        <img src="{topics_grid_box.row.topic.avatar.U_LAST_POST_AVATAR}" alt="avatar" height="36" width="36">
+						<!-- END avatar -->
+						<span>{topics_grid_box.row.LAST_POST_AUTHOR}</span>
+					</div>
+					<div class="time" title="{L_LASTPOST}">
+						<a href="{topics_grid_box.row.LAST_POST_IMG}">
+							<i class="material-symbols-outlined">access_time</i>{topics_grid_box.row.LAST_POST_TIME}
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END topic -->
+		<!-- BEGIN no_topics -->
+		<div class="posts-section posts-empty">
+            {topics_grid_box.row.L_NO_TOPICS}
+		</div>
+		<!-- END no_topics -->
+		<!-- BEGIN bottom -->
+	</div>
+</div>
+<!-- END bottom -->
+<!-- END row -->
+<!-- END topics_grid_box -->

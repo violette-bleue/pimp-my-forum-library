@@ -1,0 +1,25 @@
+<!-- report_popup_body --><!-- BEGIN html_validation -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<body>
+<!-- END html_validation -->
+<script type="text/javascript">
+    //<![CDATA[
+    function jump_to_report_list() {
+        opener.document.location.href = "{U_REPORT_LIST}";
+        window.close();
+    }
+
+    //]]>
+</script>
+
+<div id="inactive_popup" class="block-subtle privmsgs_popup" style="margin: 0;width: 100%;height: 100%;z-index: 10001 !important;">
+    <div class="headline">
+        {L_REPORT_TITLE}
+        <button onclick="window.close();" title="{L_CLOSE_WINDOW}" id="inactive_popup_close"><i class="material-symbols-outlined" style="font-weight: bold">close</i></button>
+    </div>
+    <div>{L_MESSAGE}</div>
+</div>
+
+</body>
+</html>

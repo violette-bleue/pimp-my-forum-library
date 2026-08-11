@@ -1,0 +1,212 @@
+<ul class="pmf-toolbar" data-pmf-slot="toolbar-top">
+	<!-- BEGIN switch_user_logged_in -->
+	<li>
+		<a href="{U_SEARCH_NEW}"><i icon-mask="flame"></i>{L_SEARCH_NEW}</a>
+	</li>
+	<li>
+		<a href="{U_SEARCH_SELF}"><i icon-mask="box"></i>{L_SEARCH_SELF}</a>
+	</li>
+	<!-- END switch_user_logged_in -->
+	<li>
+		<a href="{U_SEARCH_UNANSWERED}"><i icon-mask="message"></i>{L_SEARCH_UNANSWERED}</a>
+	</li>
+	<!-- BEGIN switch_user_logged_in -->
+		<li class="pmf-toolbar__item--right">
+			<a href="{U_MARK_READ}" accesskey="m"><i icon-mask="check-circle"></i>{L_MARK_FORUMS_READ}</a>
+		</li>
+	<!-- END switch_user_logged_in -->
+</ul>
+
+<!-- BEGIN catrow -->
+	<!-- BEGIN tablehead -->
+		<div class="pmf-category">
+			<div class="pmf-category__header">
+				<div class="pmf-category__title">{catrow.tablehead.L_FORUM}</div>
+				<div class="pmf-category__col-topics"><i icon-mask="list" data-tooltip="{L_TOPICS}"></i></div>
+				<div class="pmf-category__col-posts"><i icon-mask="messages" data-tooltip="{L_POSTS}"></i></div>
+				<div class="pmf-category__col-lastpost"><i icon-mask="clock" data-tooltip="{L_LASTPOST}"></i></div>
+			</div>
+			<ul class="pmf-category__list">
+	<!-- END tablehead -->
+
+	<!-- BEGIN forumrow -->
+				<li class="pmf-forum-row">
+					<div class="pmf-forum-row__icon" style="background:url({catrow.forumrow.FORUM_FOLDER_IMG}) no-repeat scroll {catrow.forumrow.INC_LEVEL} 50%;">
+						<div class="pmf-forum-row__main" style="margin: 0 {catrow.forumrow.INC_LEVEL_RIGHT} 0 {catrow.forumrow.INC_LEVEL_LEFT};">
+							<h{catrow.forumrow.LEVEL} class="pmf-forum-row__title">
+								<a href="{catrow.forumrow.U_VIEWFORUM}">{catrow.forumrow.FORUM_NAME}</a>
+							</h{catrow.forumrow.LEVEL}>
+							<div class="pmf-forum-row__desc pmf-fa-raw">{catrow.forumrow.FORUM_DESC}</div>
+
+							<!-- BEGIN switch_moderators_links -->
+							<div class="pmf-forum-row__moderators">
+								{catrow.forumrow.switch_moderators_links.L_MODERATOR}{catrow.forumrow.switch_moderators_links.MODERATORS}
+							</div>
+							<!-- END switch_moderators_links -->
+
+							<div class="pmf-forum-row__links pmf-fa-raw">{catrow.forumrow.L_LINKS}{catrow.forumrow.LINKS}</div>
+
+							<!-- Note : sans préfixe catrow. dans le template par défaut FA — à vérifier en live -->
+							<div class="pmf-forum-row__subforums">
+								<strong>{forumrow.L_SUBFORUM_STR}</strong> {forumrow.SUBFORUMS}
+							</div>
+						</div>
+					</div>
+					<div class="pmf-forum-row__topics">{catrow.forumrow.TOPICS} <span class="pmf-forum-row__col-label">{L_TOPICS}</span></div>
+					<div class="pmf-forum-row__posts">{catrow.forumrow.POSTS} <span class="pmf-forum-row__col-label">{L_POSTS}</span></div>
+					<div class="pmf-forum-row__lastpost">
+						<!-- BEGIN ads -->
+						<span class="pmf-forum-row__lastpost-avatar">
+							<img src="{catrow.forumrow.ads.IMG}" alt="{catrow.forumrow.ads.TITLE}" />
+						</span>
+						<span class="pmf-forum-row__lastpost-info">
+							<a href="{catrow.forumrow.ads.LINK}">{catrow.forumrow.ads.TITLE}</a>
+							{catrow.forumrow.ads.DATE}<br />
+							{catrow.forumrow.ads.LOCATION}
+						</span>
+						<!-- END ads -->
+
+						<!-- BEGIN avatar -->
+						<span class="pmf-forum-row__lastpost-avatar pmf-fa-raw">{catrow.forumrow.avatar.LAST_POST_AVATAR}</span>
+						<!-- END avatar -->
+
+						<span class="pmf-forum-row__lastpost-info">
+							<!-- BEGIN switch_topic_title -->
+							<a href="{catrow.forumrow.U_LATEST_TOPIC}" title="{catrow.forumrow.LATEST_TOPIC_TITLE}">{catrow.forumrow.LATEST_TOPIC_NAME}</a><br />
+							<!-- END switch_topic_title -->
+							{catrow.forumrow.USER_LAST_POST}
+						</span>
+					</div>
+				</li>
+	<!-- END forumrow -->
+
+	<!-- BEGIN tablefoot -->
+			</ul>
+		</div>
+	<!-- END tablefoot -->
+<!-- END catrow -->
+
+<!-- BEGIN switch_forum_images -->
+<div class="pmf-category">
+	<div class="pmf-category__header">
+		<div class="pmf-category__title">{switch_forum_images.TITLE}</div>
+	</div>
+	<div class="pmf-gallery-preview pmf-fa-raw" id="imageList">
+		{switch_forum_images.SCRIPTS}
+	</div>
+</div>
+<!-- END switch_forum_images -->
+
+<!-- BEGIN switch_on_index -->
+<ul class="pmf-toolbar pmf-toolbar--bottom" data-pmf-slot="toolbar-bottom">
+	<li>
+		<a href="{U_TODAY_ACTIVE}">{L_TODAY_ACTIVE}</a>
+	</li>
+	<li>
+		<a href="{U_TODAY_POSTERS}">{L_TODAY_POSTERS}</a>
+	</li>
+	<li>
+		<a href="{U_OVERALL_POSTERS}">{L_OVERALL_POSTERS}</a>
+	</li>
+	<!-- BEGIN switch_delete_cookies -->
+		<li class="pmf-toolbar__item--right">
+			<a href="{switch_on_index.switch_delete_cookies.U_DELETE_COOKIES}" rel="nofollow"><i icon-mask="trash"></i>{switch_on_index.switch_delete_cookies.L_DELETE_COOKIES}</a>
+		</li>
+	<!-- END switch_delete_cookies -->
+</ul>
+<!-- END switch_on_index -->
+
+<script type="text/javascript">
+//<![CDATA[
+$(document).ready(function() {
+	var btn_collapse = $('<div></div>', {
+		class: 'pmf-category__collapse-toggle'
+	});
+
+	var btn_collapse_show = $('<i></i>', {
+		'icon-mask': 'plus-circle',
+		class: 'pmf-category__collapse-icon pmf-category__collapse-icon--show hidden',
+		'data-tooltip': '{L_EXPEND_CAT}'
+	}).appendTo(btn_collapse);
+
+	var btn_collapse_hide = $('<i></i>', {
+		'icon-mask': 'minus-circle',
+		class: 'pmf-category__collapse-icon pmf-category__collapse-icon--hide',
+		'data-tooltip': '{L_HIDE_CAT}'
+	}).appendTo(btn_collapse);
+
+	var collapsed = [];
+
+	if (readCookie('collapsed') != null && readCookie('collapsed') != '') {
+		collapsed = readCookie('collapsed').split(',');
+	}
+
+	$(document).on('click', '.pmf-category__collapse-toggle', function() {
+		$(this).children('.pmf-category__collapse-icon--show').toggleClass('hidden');
+		$(this).children('.pmf-category__collapse-icon--hide').toggleClass('hidden');
+		$(this).parents('.pmf-category').toggleClass('hidden');
+
+		if (readCookie('collapsed') != null && readCookie('collapsed') != '') {
+			collapsed = readCookie('collapsed').split(',');
+		}
+
+		if (!$(this).parents('.pmf-category').hasClass('hidden')) {
+			removeFromArray('' + $(this).parents('.pmf-category').data('cindex'), collapsed);
+
+			createCookie('collapsed', collapsed);
+		} else {
+			collapsed.push('' + $(this).parents('.pmf-category').data('cindex'));
+
+			createCookie('collapsed', collapsed);
+		}
+	});
+
+	$('.pmf-category').each(function(i) {
+		$(this).data('cindex', '' + i);
+
+		$(btn_collapse)
+			.clone()
+			.attr('id', 'forabg' + i)
+			.appendTo($(this).find('.pmf-category__header'));
+
+		if ($.inArray('' + i, collapsed) > -1) {
+			$(this).toggleClass('hidden');
+			$('#forabg' + i).children('.pmf-category__collapse-icon--show').toggleClass('hidden');
+			$('#forabg' + i).children('.pmf-category__collapse-icon--hide').toggleClass('hidden');
+		}
+	});
+});
+
+function removeFromArray(item, array) {
+	var i = array.indexOf(item);
+
+	if (i > -1) {
+		array = array.splice(i, 1);
+	}
+}
+
+function createCookie(name, value, days) {
+	var expires;
+
+	if (days) {
+		var date = new Date();
+		date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+		expires = "; expires=" + date.toGMTString();
+	} else {
+		expires = "";
+	}
+	document.cookie = encodeURIComponent(name) + "=" + encodeURIComponent(value) + expires + "; path=/";
+}
+
+function readCookie(name) {
+	var nameEQ = encodeURIComponent(name) + "=";
+	var ca = document.cookie.split(';');
+	for (var i = 0; i < ca.length; i++) {
+		var c = ca[i];
+		while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+		if (c.indexOf(nameEQ) === 0) return decodeURIComponent(c.substring(nameEQ.length, c.length));
+	}
+	return null;
+}
+//]]>
+</script>

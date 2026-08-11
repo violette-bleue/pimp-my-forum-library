@@ -1,0 +1,248 @@
+<!-- viewtopic_body --><script type="text/javascript">
+    //<![CDATA[
+    var hiddenMsgLabel = { visible:'{JS_HIDE_HIDDEN_MESSAGE}', hidden:'{JS_SHOW_HIDDEN_MESSAGE}' };
+    showHiddenMessage = function(id)
+    {
+        try
+        {
+            var regId = parseInt(id, 10);
+            if( isNaN(regId) ) { regId = 0; }
+
+            if( regId > 0)
+            {
+                $('.post--' + id).toggle(0, function()
+                {
+                    if( $(this).is(":visible") )
+                    {
+                        $('#hidden-title--' + id).html(hiddenMsgLabel.visible);
+                    }
+                    else
+                    {
+                        $('#hidden-title--' + id).html(hiddenMsgLabel.hidden);
+                    }
+                });
+            }
+        }
+        catch(e) { }
+
+        return false;
+    };
+    //]]>
+</script>
+
+<script type="text/javascript">
+	//<![CDATA[
+	$(document).ready(function() {
+		var desc = $('#page-desc'),
+			desc_content = desc.children('.page-desc-content'),
+			desc_btn = desc.children('.page-desc-btn');
+
+		if (!desc_content.children('div').is(':empty')) {
+			desc.addClass('visible');
+
+			if(desc_content.find('div')[0].scrollHeight > 64) {
+				desc_btn.addClass('visible');
+			}
+		}
+
+		desc_btn.on('click', function() {
+			desc.toggleClass('expanded');
+		});
+	});
+	//]]>
+</script>
+{POSTER_MORE_MODAL}
+
+<div class="cp-sidebar mobi-breadcrumbs">
+	<div id="tabs" class="tabs">
+		<ul>
+			<li>
+				<a class="nav nav-solid" href="{U_INDEX}">
+					<span>{L_INDEX}</span>
+				</a>
+			</li>
+			{NAV_CAT_DESC_MOBI}
+		</ul>
+	</div>
+</div>
+
+<!-- BEGIN switch_user_authreply -->
+<a href="{U_POST_REPLY_TOPIC}" rel="nofollow" class="btn btn-rep-topic" {S_POST_REPLY_TOPIC} title="{L_POST_REPLY_TOPIC}">
+	<i class="material-symbols-outlined">{I_POST_REPLY_TOPIC}</i>&nbsp;{L_POST_REPLY_TOPIC}
+</a>
+<!-- END switch_user_authreply -->
+<!-- BEGIN switch_user_authnoreply -->
+<a href="{U_LOGIN_REPLY_TOPIC}" rel="nofollow" class="btn btn-rep-topic" title="{T_LOGIN_REPLY_TOPIC}">
+	<i class="material-symbols-outlined">{I_LOGIN_REPLY_TOPIC}</i>&nbsp;{L_LOGIN_REPLY_TOPIC}
+</a>
+<!-- END switch_user_authnoreply -->
+
+<!-- BEGIN viewtopic_bottom -->
+<form class="quickmod" method="get" action="{S_FORM_MOD_ACTION}">
+	<input type="hidden" name="t" value="{TOPIC_ID}" />
+	<!-- <input type="hidden" name="sid" value="{S_SID}" /> -->
+	<input type="hidden" name="{SECURE_ID_NAME}" value="{SECURE_ID_VALUE}" />
+	<label>
+		<div class="quickmod-wrap">
+            {S_SELECT_MOD}
+		</div>
+	</label>
+</form>
+<!-- END viewtopic_bottom -->
+
+<div id="page-desc" class="box-subtle">
+	<div class="page-desc-content">
+		<div>{TOPIC_TITLE}</div>
+	</div>
+	<div class="page-desc-btn">
+		<i class="material-symbols-outlined">keyboard_arrow_down</i>
+		<i class="material-symbols-outlined">keyboard_arrow_up</i>
+	</div>
+</div>
+
+{POSTERS_LIST}
+<!-- BEGIN topicpagination -->
+{PAGINATION}
+<!-- END topicpagination -->
+{POLL_DISPLAY}
+
+<!-- BEGIN postrow -->
+<div id="{postrow.U_POST_ID}" class="topic">
+    <!-- BEGIN hidden -->
+    <div class="post-section {postrow.hidden.ROW_CLASS}" style="{postrow.displayed.DISPLAYABLE_STATE}">
+        <p style="text-align:center">{postrow.hidden.MESSAGE}</p>
+    </div>
+    <!-- END hidden -->
+    <!-- BEGIN displayed -->
+    <div id="p{postrow.displayed.U_POST_ID}" class="post-section {postrow.displayed.ROW_COUNT}{postrow.displayed.ONLINE_IMG_NEW} post--{postrow.displayed.U_POST_ID} {postrow.displayed.GROUP}" style="{postrow.displayed.DISPLAYABLE_STATE}">
+        <div class="post-head">
+            <div class="post-icon"><i class="material-symbols-outlined" style="display: {postrow.displayed.DISPLAY_ICON};">person</i>{postrow.displayed.POSTER_AVATAR}</div>
+            <div class="post-info">
+                <div class="h3">{postrow.displayed.POSTER_NAME}</div>
+                <div class="post-details">{postrow.displayed.POST_DATE_NEW}</div>
+            </div>
+        </div>
+        <div class="post-content">
+            {postrow.displayed.MESSAGE}
+            <!-- BEGIN switch_attachments -->
+            <div class="attachbox">
+                <p class="title">{postrow.displayed.switch_attachments.L_ATTACHMENTS}</p>
+                <dl class="attachments">
+                    <!-- BEGIN switch_post_attachments -->
+                    <dt>
+                        <!-- BEGIN switch_dl_att -->
+                        <a class="postlink" href="{postrow.displayed.switch_attachments.switch_post_attachments.switch_dl_att.U_ATTACHMENT}">{postrow.displayed.switch_attachments.switch_post_attachments.switch_dl_att.ATTACHMENT}</a> {postrow.displayed.switch_attachments.switch_post_attachments.switch_dl_att.ATTACHMENT_DEL}
+                        <!-- END switch_dl_att -->
+                        <!-- BEGIN switch_no_dl_att -->
+                        {postrow.displayed.switch_attachments.switch_post_attachments.switch_no_dl_att.ATTACHMENT} {postrow.displayed.switch_attachments.switch_post_attachments.switch_no_dl_att.ATTACHMENT_DEL}
+                        <!-- END switch_no_dl_att -->
+                    </dt>
+                    <dd>
+                        <!-- BEGIN switch_no_comment -->
+                        <p>{postrow.displayed.switch_attachments.switch_post_attachments.switch_no_comment.ATTACHMENT_COMMENT}</p>
+                        <!-- END switch_no_comment -->
+                        <!-- BEGIN switch_no_dl_att -->
+                        <p><strong>{postrow.displayed.switch_attachments.switch_post_attachments.switch_no_dl_att.TEXT_NO_DL}</strong></p>
+                        <!-- END switch_no_dl_att -->
+                        <p>(<span class="ltr">{postrow.displayed.switch_attachments.switch_post_attachments.FILE_SIZE}</span>) {postrow.displayed.switch_attachments.switch_post_attachments.NB_DL}</p>
+                    </dd>
+                    <!-- END switch_post_attachments -->
+                </dl>
+            </div>
+            <!-- END switch_attachments -->
+        </div>
+		{postrow.displayed.EDITED_MESSAGE}
+		<!-- BEGIN switch_likes_active -->
+		<div class="fa_like_div">
+			<!-- BEGIN switch_like_list -->
+				{postrow.displayed.switch_likes_active.switch_like_list.D_LIKE_LIST}
+			<!-- END switch_like_list -->
+			<!-- BEGIN switch_dislike_list -->
+				{postrow.displayed.switch_likes_active.switch_dislike_list.D_DISLIKE_LIST}
+			<!-- END switch_dislike_list -->
+		</div>
+		<!-- END switch_likes_active -->
+		<!-- BEGIN switch_post_buttons -->
+		<ul class="post-buttons">
+		<!-- END switch_post_buttons -->
+			<!-- BEGIN switch_likes_active -->
+				<button class="rep-button rep-button-ellipsis {postrow.displayed.switch_likes_active.C_VOTE_LIKE}"  data-href="{postrow.displayed.switch_likes_active.U_VOTE_LIKE}" data-href-rm="{postrow.displayed.switch_likes_active.U_VOTE_RM_LIKE}">
+					<i class="material-symbols-outlined">thumb_up</i>
+					{postrow.displayed.switch_likes_active.COUNT_VOTE_LIKE}
+					<span>{postrow.displayed.switch_likes_active.L_LIKE}</span>
+				</button>
+			<!-- BEGIN switch_dislike_button -->
+				<button class="rep-button rep-button-ellipsis {postrow.displayed.switch_likes_active.switch_dislike_button.C_VOTE_DISLIKE}" data-href="{postrow.displayed.switch_likes_active.switch_dislike_button.U_VOTE_DISLIKE}" data-href-rm="{postrow.displayed.switch_likes_active.switch_dislike_button.U_VOTE_RM_LIKE}">
+					<i class="material-symbols-outlined">thumb_down</i>
+					{postrow.displayed.switch_likes_active.switch_dislike_button.COUNT_VOTE_DISLIKE}
+					<span>{postrow.displayed.switch_likes_active.switch_dislike_button.L_DISLIKE}</span>
+				</button>
+			<!-- END switch_dislike_button -->
+			<!-- END switch_likes_active -->
+			<!-- BEGIN switch_edit_quote_buttons -->
+			<div class="navmenu_block">
+				<div class="navmenu_show"><i class="material-symbols-outlined">more_horiz</i></div>
+				<div class="navmenu_list">
+					<li>{postrow.displayed.DELETE_IMG}</li>
+					<li>{postrow.displayed.EDIT_IMG}</li>
+					<li>{postrow.displayed.QUOTE_IMG}</li>
+				</div>
+			</div>
+			<!-- END switch_edit_quote_buttons -->
+		<!-- BEGIN switch_post_buttons -->
+		</ul>
+		<!-- END switch_post_buttons -->
+	</div>
+    <!-- BEGIN first_post_br -->
+    <hr id="first-post-br" />
+    <!-- END first_post_br -->
+    <!-- END displayed -->
+</div>
+<!-- END postrow -->
+<!-- BEGIN topicpagination -->
+{PAGINATION}
+<!-- END topicpagination -->
+<div class="btn btn-rep-topic">
+    {S_WATCH_TOPIC}
+</div>
+{INLINE_MESSAGE}
+
+{QUICK_REPLY_FORM}
+
+<!-- BEGIN promot_trafic -->
+<div class="module" id="ptrafic_close" style="display: none;">
+	<div class="h3"><a href="javascript:ShowHideLayer('ptrafic_open','ptrafic_close');"><i class="material-symbols-outlined">add</i></a>{PROMOT_TRAFIC_TITLE}</div>
+</div>
+<div class="module" id="ptrafic_open" style="display:'';">
+	<div class="h3"><a href="javascript:ShowHideLayer('ptrafic_open','ptrafic_close');"><i class="material-symbols-outlined">remove</i></a>{PROMOT_TRAFIC_TITLE}</div>
+	<div class="module-table">
+		<table summary="{PROMOT_TRAFIC_TITLE}">
+			<tbody>
+			<!-- BEGIN link -->
+			<tr>
+				<td>
+					<a href="{promot_trafic.link.U_HREF}" title="{promot_trafic.link.TITLE}">
+						<i class="ion-document-text"></i>
+                        {promot_trafic.link.TITLE}
+					</a>
+				</td>
+			</tr>
+			<!-- END link -->
+			</tbody>
+		</table>
+	</div>
+</div>
+<!-- END promot_trafic -->
+
+<!-- BEGIN switch_user_authreply -->
+<a href="{U_POST_REPLY_TOPIC}" title="{T_POST_REPLY_TOPIC}" {S_POST_REPLY_TOPIC} rel="nofollow" class="btn-floating">
+    <i class="material-symbols-outlined">{I_POST_REPLY_TOPIC}</i>
+	<span class="btn-floating-txt">{L_POST_REPLY_TOPIC}</span>
+</a>
+<!-- END switch_user_authreply -->
+<!-- BEGIN switch_user_authnoreply -->
+<a href="{U_LOGIN_REPLY_TOPIC}" title="{T_LOGIN_REPLY_TOPIC}" rel="nofollow" class="btn-floating">
+	<i class="material-symbols-outlined">{I_LOGIN_REPLY_TOPIC}</i>&nbsp;
+	<span class="btn-floating-txt">{L_LOGIN_REPLY_TOPIC}</span>
+</a>
+<!-- END switch_user_authnoreply -->

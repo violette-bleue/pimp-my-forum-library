@@ -1,0 +1,48 @@
+<!-- calendar_scheduler_body --><form name="_calendar_scheduler" method="post" action="{ACTION}">
+    <div id="breadcrumbs">
+        <a href="{U_INDEX}"><i class="material-symbols-outlined">home</i> <span>{L_INDEX}</span></a>
+        <a href="{U_CALENDAR_SCHEDULER}">{L_CALENDAR_SCHEDULER}</a>
+    </div>
+
+    <div id="mini-calendar">
+        <table class="table1" cellspacing="1">
+            <tr>
+                <td colspan="7" class="no-border">
+                    <table class="table2">
+                        <tr>
+                            <td class="no-border"><a href="{U_PREC}"><i class="material-symbols-outlined">navigate_before</i></a></td>
+                            <td class="no-border center" style="width: 100%;padding: 0px 16px 0px 16px;">{S_MONTH} {S_YEAR}</td>
+                            <td class="no-border"><a href="{U_NEXT}"><i class="material-symbols-outlined">navigate_next</i></a></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <!-- BEGIN header_cell -->
+                <th class="row3 dayHeader">{header_cell.L_DAY}</th>
+                <!-- END header_cell -->
+            </tr>
+            <!-- BEGIN row -->
+            <tr class="center">
+                <!-- BEGIN cell -->
+                <td>{row.cell.DAY}</td>
+                <!-- END cell -->
+            </tr>
+            <!-- END row -->
+        </table>
+        <div class="center"><a href="{U_CALENDAR}" title="{L_CALENDAR}" class="btn btn-default">{L_CALENDAR}</a></div>
+    </div>
+
+    <div id="calendar-result" style="margin-top: 18px;">
+        {TOPIC_LIST_SCHEDULER}
+        <br/>
+        {BIRTHDAY_LIST_SCHEDULER}
+        <br/>
+        {EVENT_LIST_SCHEDULER}
+    </div>
+    <p>{PAGINATION}</p>
+
+    <p>{S_HIDDEN_FIELDS}</p>
+</form>
+
+<div class="clear"></div>

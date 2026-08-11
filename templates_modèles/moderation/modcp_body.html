@@ -1,0 +1,76 @@
+<!-- modcp_body --><div class="page-header">
+    <h1>{L_MOD_CP}</h1>
+    <div id="breadcrumbs" class="breadcrumbs-topic">
+        <a href="{U_INDEX}"><i class="material-symbols-outlined">home</i> <span>{L_INDEX}</span></a>
+        {NAV_CAT_DESC}
+    </div>
+</div>
+
+<form name="manage" action="{S_MODCP_ACTION}" method="post">
+    <p class="linkmcp">{L_MOD_CP_EXPLAIN}</p>
+    <br />
+
+    <table class="table1 table-resp" cellspacing="1">
+        <thead>
+        <tr>
+            <th class="name">&nbsp;</th>
+            <th class="name">{L_TOPICS}</th>
+            <th>{L_REPLIES}</th>
+            <th class="name">{L_LASTPOST}</th>
+            <th>{L_SELECT}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- BEGIN topicrow -->
+        <tr class="{topicrow.ROW_CLASS}">
+            <td data-th="" class="icon" style="background-image:url('{topicrow.TOPIC_FOLDER_IMG}'); background-repeat: no-repeat; background-position: center;">
+                {topicrow.ICON}
+            </td>
+            <td data-th="{L_TOPICS}&nbsp;&colon;&nbsp;">{topicrow.TOPIC_TYPE}
+                <a class="topictitle" href="{topicrow.U_VIEW_TOPIC}">{topicrow.TOPIC_TITLE}</a>
+                <span class="forum-lastpost-author"><i class="material-symbols-outlined">person</i><strong><a class="author" href="{topicrow.U_VIEW_AUTHOR}">{topicrow.TOPIC_AUTHOR}</a></strong></span>
+            </td>
+            <td data-th="{L_REPLIES}&nbsp;&colon;&nbsp;" class="posts">{topicrow.REPLIES}</td>
+            <td data-th="{L_LASTPOST}&nbsp;&colon;&nbsp;">{topicrow.LAST_POST_TIME}</td>
+            <td data-th="{L_SELECT}&nbsp;&colon;&nbsp;" class="posts">
+                <div class="checkbox">
+                    <input type="checkbox" name="topic_id_list[]" onchange="$(this).closest('tr').toggleClass('selected');" value="{topicrow.TOPIC_ID}"/>
+                    <div class="checkbox-check"></div>
+                </div>
+            </td>
+        </tr>
+        <!-- END topicrow -->
+        </tbody>
+    </table>
+
+    <div class="mark-buttons">
+        <a href="#" class="btn btn-flat" onclick="this.value=check('select','manage');$('.table1 tr').addClass('selected');return false;">
+            <i class="material-symbols-outlined">done_all</i><span>{L_SELECT_ALL}</span>
+        </a>
+        <a href="#" class="btn btn-flat" onclick="this.value=check('unselect','manage');$('tr.selected').removeClass('selected');return false;">
+            <i class="material-symbols-outlined">remove</i><span>{L_USELECT_ALL}</span>
+        </a>
+    </div>
+
+    <fieldset class="form-buttons">
+        {S_HIDDEN_FIELDS}
+        <!-- BEGIN switch_delete --><input class="btn btn-default" type="submit" name="delete" value="{L_DELETE}"/>&nbsp;
+        <!-- END switch_delete -->
+        <input class="btn btn-default" type="submit" name="trash" value="{L_TRASH}"/>&nbsp;
+        <input class="btn btn-default" type="submit" name="move" value="{L_MOVE}"/>&nbsp;
+        <input class="btn btn-default" type="submit" name="lock" value="{L_LOCK}"/>&nbsp;
+        <input class="btn btn-default" type="submit" name="unlock" value="{L_UNLOCK}"/>
+        <!-- BEGIN switch_sticky --><input class="btn btn-default" type="submit" name="sticky" value="{L_STICKY}"/>&nbsp;
+        <!-- END switch_sticky -->
+        <!-- BEGIN switch_announce --><input class="btn btn-default" type="submit" name="announce" value="{L_ANNOUNCE}"/>&nbsp;
+        <!-- END switch_announce -->
+        <!-- BEGIN switch_normal --><input class="btn btn-default" type="submit" name="normal" value="{L_NORMAL}"/>
+        <!-- END switch_normal -->
+    </fieldset>
+
+    <div class="pagination">
+        {PAGINATION}
+    </div>
+</form>
+
+{JUMPBOX}

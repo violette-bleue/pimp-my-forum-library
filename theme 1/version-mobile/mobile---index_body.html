@@ -1,0 +1,95 @@
+<!-- index_body --><!-- BEGIN switch_logo_mob -->
+<div class="box">
+    <div class="forum-header">
+        <!-- BEGIN switch_site_desc -->
+        <span id="forum-description">{switch_logo_mob.switch_site_desc.DESCRIPTION}</span>
+        <!-- END switch_site_desc -->
+        <div class="forum-header-background">
+            <img src="{switch_logo_mob.LOGO_MOB}" alt="{SITENAME}"/>
+        </div>
+        <div class="forum-header-content">
+            <span class="vertical-help"></span><img src="{switch_logo_mob.LOGO_MOB}" alt="{SITENAME}"/>
+        </div>
+    </div>
+</div>
+<div id="join_index_btn" class="box">
+    <!-- BEGIN switch_join_button -->
+    <a href="{switch_logo_mob.switch_join_button.U_LINK}" class="btn"><i class="material-symbols-outlined">group_add</i>&nbsp;{switch_logo_mob.switch_join_button.L_TEXT}</a>
+    <!-- END switch_join_button -->
+</div>
+
+<!-- END switch_logo_mob -->
+
+<!-- BEGIN message_admin_index -->
+<div class="box introduction">
+    <!-- BEGIN message_admin_titre -->
+    <h2>{message_admin_index.message_admin_titre.MES_TITRE}</h2>
+    <!-- END message_admin_titre -->
+
+    <!-- BEGIN message_admin_txt -->
+    <div class="box-content">{message_admin_index.message_admin_txt.MES_TXT}</div>
+    <!-- END message_admin_txt -->
+</div>
+<!-- END message_admin_index -->
+<div class="cp-sidebar">
+    {MOBI_TABS}
+</div>
+
+{BOARD_INDEX}
+
+<!-- BEGIN giefmod_index1 -->
+{giefmod_index1.MODVAR}
+<!-- END giefmod_index1 -->
+
+<!-- BEGIN switch_forum_images -->
+<div class="module index-last-images">
+    <div class="h3"><i class="material-symbols-outlined">mms</i>{switch_forum_images.TITLE}</div>
+    <div class="container-imgs-list" style="max-height: 500px; margin-top: 8px" id="imageList">
+        {switch_forum_images.SCRIPTS}
+    </div>
+</div>
+<!-- END switch_forum_images -->
+
+<div class="box-subtle box-widget-bottom">
+    <h2>
+        {L_STATISTICS}
+    </h2>
+    {TOTAL_POSTS}<br />
+    {TOTAL_USERS}<br />
+    {NEWEST_USER}<br />
+</div>
+<!-- BEGIN disable_viewonline -->
+<div class="box-subtle box-widget-bottom">
+    <h2>
+        {L_WHO_IS_ONLINE}
+    </h2>
+    {TOTAL_USERS_ONLINE}<br />
+    {RECORD_USERS}
+
+    <div class="whoisonline-toggle">{L_WHO_IS_ONLINE}</div>
+
+    {L_ONLINE_USERS}
+</div>
+<div class="whoisonline-modal">
+    <div class="whoisonline-title">{L_WHO_IS_ONLINE}<i class="whoisonline-close material-symbols-outlined">close</i></div>
+    <div class="whoisonline-list">{LOGGED_IN_USER_LIST}{L_CONNECTED_MEMBERS}</div>
+</div>
+<script>
+    $(function(){
+        $('.whoisonline-toggle').on('click', function() {
+            $('.whoisonline-modal').show();
+        });
+        $('.whoisonline-close').on('click', function() {
+            $('.whoisonline-modal').hide();
+        });
+        $(document).on('mouseup', function(e) {
+            let container = $(".whoisonline-modal");
+            if (!container.is(e.target) && container.has(e.target).length === 0) {
+                console.log('hide');
+                container.hide();
+            }
+        });
+    });
+</script>
+
+<!-- END disable_viewonline -->

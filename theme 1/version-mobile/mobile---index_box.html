@@ -1,0 +1,145 @@
+<!-- index_box --><!-- BEGIN catrow -->
+<!-- BEGIN tablehead -->
+<div class="forum">
+    <h2><span>{catrow.tablehead.L_FORUM}</span></h2>
+    <!-- END tablehead -->
+
+    <!-- BEGIN forumrow -->
+    <div class="forum-section-wrap">
+        <div class="{catrow.forumrow.FOLDER_CLASSNAME} forum-section">
+            <div class="forum-icon"><i class="material-symbols-outlined">&#xE7FD;</i>
+                <!-- BEGIN avatar -->
+                <div class="forum-avatar">{catrow.forumrow.avatar.LAST_POST_AVATAR}</div>
+                <!-- END avatar -->
+                <!-- BEGIN ads -->
+                <div class="forum-avatar">
+                    <img src="{catrow.forumrow.ads.IMG}" alt="{catrow.forumrow.ads.TITLE}" />
+                </div>
+                <!-- END ads -->
+            </div>
+            <div class="forum-content">
+                <a href="{catrow.forumrow.U_VIEWFORUM}" title="{catrow.forumrow.L_FORUM_FOLDER_ALT}">
+                    <h3><b>{catrow.forumrow.FORUM_NAME}</b></h3>
+                    <div class="forum-statistics"<!-- BEGIN ads --> data-swap='<i class="material-symbols-outlined forum-badge-icon">local_offer</i>&nbsp;{catrow.forumrow.TOPICS}'<!-- END ads -->><i class="material-symbols-outlined forum-badge-icon">forum</i>&nbsp;{catrow.forumrow.TOPICS}</div>
+            <div class="forum-description">{catrow.forumrow.FORUM_DESC}</div>
+            </a>
+            <div class="forum-lastpost-wrap">
+                <a href="{catrow.forumrow.U_LATEST_TOPIC_POST}">
+                    <i class="material-symbols-outlined">forum</i>
+                    <div class="forum-lastpost"><b>{catrow.forumrow.LATEST_TOPIC_NAME}</b></div>
+                    <div class="forum-lastpost-time">{catrow.forumrow.L_LATEST_POST_FROM_THE}</div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END forumrow -->
+
+<!-- BEGIN tablefoot -->
+</div>
+<!-- END tablefoot -->
+<!-- END catrow -->
+
+<script type="text/javascript">
+    $('.forum-statistics').each(function() {
+        if ($(this).data('swap')) {
+            $(this).html($(this).data('swap'));
+        }
+    });
+    $('.forum-lastpost-wrap').each(function() {
+        if ($(this).find('.forum-lastpost').is(':empty')) {
+            $(this).remove();
+        }
+    });
+
+    //<![CDATA[
+    $(document).ready(function () {
+        var curid = '{CUR_ID}';
+
+        var btn_collapse = $('<div/>', {
+            class: 'forum-hide',
+            html: '<div class="forum-hide-icon-a"></div><div class="forum-hide-icon-b"></div>',
+        });
+
+        var collapsed = [];
+
+        if (readCookie('collapsed') != null && readCookie('collapsed') != '') {
+            collapsed = readCookie('collapsed').split(',');
+        }
+
+        $(document).on('click', '.forum-hide', function () {
+            $(this).toggleClass('forum-show');
+            $(this).parents('.forum').toggleClass('forum-hidden');
+
+            if (readCookie('collapsed') != null && readCookie('collapsed') != '') {
+                collapsed = readCookie('collapsed').split(',');
+            }
+
+            if (!$(this).parents('.forum').hasClass('forum-hidden')) {
+                removeFromArray(curid + '.' + $(this).parents('.forum').data('cindex'), collapsed);
+
+                createCookie('collapsed', collapsed);
+            } else {
+                collapsed.push(curid + '.' + $(this).parents('.forum').data('cindex'));
+
+                createCookie('collapsed', collapsed);
+            }
+        });
+
+        $('.forum').each(function (i) {
+
+            $(this).data('cindex', '' + i);
+
+            $(btn_collapse)
+                    .clone()
+                    .attr('id', 'forum' + i)
+                    .appendTo($(this).find('h2'));
+
+            if ($.inArray(curid + '.' + i, collapsed) > -1) {
+                $(this).find('.forum-hide').toggleClass('forum-show');
+                $(this).toggleClass('forum-hidden');
+            }
+
+            if ($(this).find('.type-classified').length) {
+                $(this)
+                        .addClass('type-table-classified')
+                        .find('.type-classified')
+                        .find('.forum-statistics-posts').remove();
+            }
+        });
+    });
+
+    function removeFromArray(item, array) {
+        var i = array.indexOf(item);
+
+        if (i > -1) {
+            array = array.splice(i, 1);
+        }
+    }
+
+    function createCookie(name, value, days) {
+        var expires;
+
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toGMTString();
+        } else {
+            expires = "";
+        }
+        document.cookie = encodeURIComponent(name) + "=" + encodeURIComponent(value) + expires + "; path=/";
+    }
+
+    function readCookie(name) {
+        var nameEQ = encodeURIComponent(name) + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) === 0) return decodeURIComponent(c.substring(nameEQ.length, c.length));
+        }
+        return null;
+    }
+
+    //]]>
+</script>
